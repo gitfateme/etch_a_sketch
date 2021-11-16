@@ -3,10 +3,13 @@ let gridItems;
 const board = document.querySelector('.board');
 let paintColor = '#582F0E'
 
+//color input
 colorInput = document.getElementById('color-input');
 colorInput.oninput = function () {
     paintColor = this.value;
 }
+
+//create divs
 function createDiv(gridColumns) {
     gridItems = gridColumns * gridColumns;
     for ( i =0 ; i < gridItems ; i++) {
