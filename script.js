@@ -1,7 +1,12 @@
 let gridColumns;
 let gridItems;
 const board = document.querySelector('.board');
+let paintColor = '#582F0E'
 
+colorInput = document.getElementById('color-input');
+colorInput.oninput = function () {
+    paintColor = this.value;
+}
 function createDiv(gridColumns) {
     gridItems = gridColumns * gridColumns;
     for ( i =0 ; i < gridItems ; i++) {
@@ -13,7 +18,7 @@ function createDiv(gridColumns) {
 console.log(newDivs)
 
 newDivs.forEach(div => div.addEventListener('mouseover', function(e) {
-    div.style.backgroundColor = '#582F0E'
+    div.style.backgroundColor = paintColor;
 }));
 }
 
