@@ -51,11 +51,46 @@ html {
 .buttons {
     /* border: 2px solid blue; */
     display: grid;
-
+    justify-content: center;
 }
 
+.buttons-main {
+    width: 50rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+/* Slider */
 .slider-container p {
     font-size: 2.5rem;
     color: #251303;
+}
+
+#grid-slider {
+    -webkit-appearance: none;
+    width: 2.5rem;
+    background: #7F4F24;
+    width: 80%;
+    opacity: 0.7;
+    transition: all .2s;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+#grid-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #582F0E;
+    border-radius: 1rem;
+}
+#grid-slider::-moz-range-thumb {
+    width: 2.5rem;
+    height: 2.5rem;
+    
+}
+
+#grid-slider:hover {
+    opacity: 1;
 }
 
