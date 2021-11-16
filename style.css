@@ -1,0 +1,52 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Waiting+for+the+Sunrise&display=swap');
+
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+    font-family: 'Waiting for the Sunrise', cursive;
+}
+
+* , *::before , *::after {
+    box-sizing: inherit;
+    margin: 0;  
+    padding: 0;
+}
+
+.main {
+    background-color: #b6ad90;
+    height: 100vh;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 2.5fr 1fr;
+}
+
+.wrapper {
+    /* border: 2px solid red; */
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper h1 {
+    color: #333D29;
+    font-size: 4rem;
+    margin-top: 3rem;
+}
+
+.board {
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 1px 1px 10px #582f0e;
+    width: 500px;
+    height: 500px;
+    display: grid;
+}
+
+.board div {
+    border: 1px solid rgba(194, 197, 170, .2) ;
+}
+
+.buttons {
+    /* border: 2px solid blue; */
+}
