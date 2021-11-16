@@ -18,3 +18,7 @@ console.log(newDivs)
 newDivs.forEach(div => div.addEventListener('mouseover', function(e) {
     div.style.backgroundColor = '#582F0E'
 }));
+
+newDivs.forEach(div => div.addEventListener('touchmove', function(e) {
+    div.style.backgroundColor = '#582F0E'
+}));
