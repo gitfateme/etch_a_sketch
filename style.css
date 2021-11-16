@@ -39,8 +39,8 @@ html {
     background-color: white;
     border: 1px solid black;
     box-shadow: 1px 1px 10px #582f0e;
-    width: 500px;
-    height: 500px;
+    width: 50rem;
+    height: 50rem;
     display: grid;
 }
 
@@ -50,4 +50,12 @@ html {
 
 .buttons {
     /* border: 2px solid blue; */
+    display: grid;
+
 }
+
+.slider-container p {
+    font-size: 2.5rem;
+    color: #251303;
+}
+
