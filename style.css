@@ -58,7 +58,7 @@ html {
     width: 50rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1.5fr;
 }
 /* Slider */
 
@@ -113,9 +113,7 @@ html {
     height: 5rem;
     outline: none;
     border-radius: 5rem;
-    
-
-    
+  
 }
 
 #color-input::-webkit-color-swatch-wrapper {
@@ -126,4 +124,23 @@ html {
 #color-input::-webkit-color-swatch {
     border-radius: 5rem;
     border: none;
+}
+
+
+/* buttons */
+
+.btn {
+    display: block;
+    margin: 1rem auto;
+    width: 12rem;
+    padding: 1rem 0;
+    border: none;
+    border-radius: 1rem;
+    background-color: #656D4A;
+    font-size: 1.5rem;
+    transition: all .2s;
+}
+
+.btn:hover {
+    background-color: #414833;
 }
