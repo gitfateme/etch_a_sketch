@@ -93,7 +93,6 @@ shadowBtn.addEventListener('click', function() {
     
     newDivs = Array.from(document.querySelectorAll('.board>div'));
     newDivs.forEach(div => div.addEventListener('mouseover', function() {
-        paint('gray')
     }));
 
 })
