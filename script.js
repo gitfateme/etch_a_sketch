@@ -1,49 +1,76 @@
-let gridColumns;
-let gridItems;
 const board = document.querySelector('.board');
-let paintColor = '#582F0E'
+const colorButtons = document.querySelectorAll('.color-btns');
+const colorPicker = document.getElementById('color-input');
+const clearButton = document.querySelector('.clear');
+let color = '#582F0E'
 
-//color input
-colorInput = document.getElementById('color-input');
-colorInput.oninput = function () {
-    paintColor = this.value;
-    paint(paintColor)
-}
-
-colorInput.addEventListener('click', function () {
-    paintColor = this.value;
-    paint(paintColor)
-})
-
-//create divs
-function createDiv(gridColumns) {
-    gridItems = gridColumns * gridColumns;
-    for ( i =0 ; i < gridItems ; i++) {
+function createGrid (columns) {
+    let gridItems = columns * columns;
+    for (i = 0 ; i < gridItems ; i++) {
         let newDiv = document.createElement('div');
         board.appendChild(newDiv);
     }
-    board.style.gridTemplateColumns = `repeat(${gridColumns} , 1fr)`;
-    
-    paint(paintColor);
+    board.style.gridTemplateColumns = `repeat(${columns}, 1fr)`
+
+    let newDivs = board.querySelectorAll('div');
+    newDivs.forEach(div => div.addEventListener('mouseover', paint))
+};
+createGrid('32');
+
+
+
+function paint() {
+    switch (color) {
+        case 'rainbow':
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            break;
+        case 'shadow': 
+            if(this.style.backgroundColor.slice(0,4) === 'rgba') {
+                let currentOpacity = Number(this.style.backgroundColor.slice(-4,-1));
+                if (currentOpacity <= 0.9) {
+                    this.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity + 0.1})`;
+                } 
+            } else {
+                this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'
+            }
+            break;
+        case 'eraser':
+            this.style.backgroundColor= '#fff';
+            break;
+        default:
+            this.style.backgroundColor = color;
+            break;
+    }
 }
 
-//paint divs
-function paint (paintColor) {
-    newDivs = Array.from(document.querySelectorAll('.board>div'));
-    newDivs.forEach(div => div.addEventListener('mouseover', function() {
-        div.style.backgroundColor = paintColor;
-    }));
+//color picker
+colorPicker.oninput = function(e) {
+    color = e.target.value;
 }
 
+// Updates color variable when a color button is clicked
+function changeColor(event) {
+    switch (event.target.dataset.color) { 
+        case 'rainbow':
+            color = 'rainbow';
+            break;  
+        case 'eraser':
+            color = 'eraser';
+            break;
+        case 'shadow':
+            color = 'shadow';
+            break;
+        default:
+            color = colorPicker.value;
+            break;
+    } 
+}
 
-createDiv('32');
-
+//remove all created divs
 function removeDivs () {
     newDivs = Array.from(document.querySelectorAll('.board>div'));
     newDivs.forEach(div => div.remove())
 }
-
-
 // SLIDER SETTINGS
 const slider = document.getElementById('grid-slider')
 const sliderSpan = document.getElementById('slider-span')
@@ -52,47 +79,17 @@ slider.oninput = function() {
     removeDivs();
     sliderSpan.textContent = slider.value + "*" + slider.value;
     gridColumns = slider.value;
-    createDiv(gridColumns);
+    createGrid(gridColumns);
 }
 
-//clear button function
-
-function clearBoard() {
-    const divs = Array.from(document.querySelectorAll('.board>div'));
-    divs.forEach(div => div.style.backgroundColor = '#fff')
-    paintColor = colorInput.value;
+//clear button
+function clearGrid () {
+    let newDivs = board.querySelectorAll('div');
+    newDivs.forEach(div => div.style.backgroundColor = '#fff');
 }
 
-const clearBtn = document.querySelector('.clear');
-clearBtn.addEventListener('click' , clearBoard);
-
-//eraser button 
-const eraserBtn = document.querySelector('.eraser');
-eraserBtn.addEventListener('click', function() {
-    paint('#fff')
-});
-
-//rainbow button
-function generateColor () {
-    return 'rgba(' + Math.floor(Math.random() * 255) +',' + Math.floor(Math.random() * 255) + ',' +Math.floor(Math.random() * 255) +')';
-}
-
-const rainbowBtn = document.querySelector('.rainbow');
-rainbowBtn.addEventListener('click', function() {
-    newDivs = Array.from(document.querySelectorAll('.board>div'));
-    newDivs.forEach(div => div.addEventListener('mouseover', function() {
-        div.style.backgroundColor = generateColor();
-    }));
-})
-
-//shadow button
 
 
-const shadowBtn = document.querySelector('.shadow');
-shadowBtn.addEventListener('click', function() {
-    
-    newDivs = Array.from(document.querySelectorAll('.board>div'));
-    newDivs.forEach(div => div.addEventListener('mouseover', function() {
-    }));
-
-})
+//other event listeners
+clearButton.addEventListener('click', clearGrid);
+colorButtons.forEach(colorButton => colorButton.addEventListener('click', changeColor));
